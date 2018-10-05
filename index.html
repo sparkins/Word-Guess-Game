@@ -1,14 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Word Guess Game</title>
-</head>
-<body>
-    
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            background: url(assets/images/hangman.jpg) no-repeat;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <div id="display"></div>
+    <div id="buttons"></div>
+    <div id="word-guess"></div>
+
+
+    <!-- Create screen layout for the game -->
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col col-md-12 col-lg-12 gameTitle">Word Guessing Game</div>
+        </div>
+        <div class="row row2">
+            <div class="col-md-6 instructions">Guess The Word.</div>
+            <div class="col-md-6 displayword">Press the key for the letter you wish to guess!</div>
+        </div>
+        <div class="row row3">
+            <div class="col-md-6 instructionsRow2">The category is ??? </div>
+            <div class="col-md-6 userSelection">You Choose: >
+                <div id="userSelected"></div>
+            </div>
+        </div>
+        <div class="row row4">
+            <div class="col-md-6 instructionsRow3">The word is: class= "randomWordSelect" </div>
+            <div class="col-md-6 numOfGuesses">Number of Guesses so far: </div>
+        </div>
+    </div> -->
+
+    <!-- Store a random word from you list of words -->
+    <script>
+
+        $(document).ready(function () {
+            // Here we are provided an initial array of letters.
+            var randomWordSelect = wordSelect(randomWordSelect);
+
+            // This function create buttons on the screen for the user top click
+            function displayLetterButton() {
+                var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+                for (var i = 0; i < letters.length; i++) {
+                    var letterBtn = $("<button>");
+                    letterBtn.addClass("letter-button letter letter-button-color")
+                    letterBtn.attr("data-letter", letters[i]);
+                    letterBtn.text(letters[i]);
+                    $("#buttons").append(letterBtn);
+                }
+            }
+
+            // This function takes an array of words, randomly selects one and then prints out dashes for each letter in that word
+            function wordSelect() {
+                var wordList = ["London", "Paris", "Munich", "Washington", "New York", "Rome", "Madrid", "Porto", "Mexico City", "Sydney"];
+                randomWordSelect = wordList[Math.floor(Math.random() * wordList.length)];
+                console.log(randomWordSelect);
+
+                // Display the answer as "-"
+                var underscores = "";
+                for (i = 0; i < randomWordSelect.length - 1; i++) {
+                    underscores += "_ ";
+                }
+                underscores += "_";
+                console.log(underscores);
+                $("#word-guess").text(underscores);
+                // return underscores;
+                return (randomWordSelect);
+            }
+
+            // This function retrieves the letter selections from the user, via a click event on the oncreen keyboard
+            function userGuess(randomWordSelect) {
+                $(".letter-button").on("click", function () {
+                    // console.log($(this).attr("data-letter"));
+                    console.log ("Word within userGuess Function", randomWordSelect);
+                    var letterGuess = $(this).attr("data-letter");
+                    console.log(letterGuess);
+                    var wordGuess = "";
+                    for (i = 0; i < randomWordSelect.length - 1; i++) {
+                        if (randomWordSelect[i] === letterGuess) {
+                            underscores[i] = letterGuess;
+                            $("#word-guess").text(underscores);
+                        }}
+
+                    // console.log(wordGuess);
+                    
+                });
+            }
+
+            displayLetterButton();
+            wordSelect();
+            userGuess();
+
+        })
+
+
+
+    </script>
 
 </body>
+
 </html>
