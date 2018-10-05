@@ -32,7 +32,7 @@
     <div id="display"></div>
     <div id="buttons"></div>
     <div id="word-guess"></div>
-
+    
 
     <!-- Create screen layout for the game -->
     <!-- <div class="container">
@@ -58,9 +58,13 @@
     <!-- Store a random word from you list of words -->
     <script>
 
+        // Define Global Variables
+        var randomWordSelect="";
+        var underscores="";
+        
         $(document).ready(function () {
             // Here we are provided an initial array of letters.
-            var randomWordSelect = wordSelect(randomWordSelect);
+            // var randomWordSelect = wordSelect(randomWordSelect);
 
             // This function create buttons on the screen for the user top click
             function displayLetterButton() {
@@ -81,39 +85,43 @@
                 console.log(randomWordSelect);
 
                 // Display the answer as "-"
-                var underscores = "";
-                for (i = 0; i < randomWordSelect.length - 1; i++) {
+                underscores = "";
+                for (i = 0; i < randomWordSelect.length; i++) {
                     underscores += "_ ";
-                }
-                underscores += "_";
+                    }
+
                 console.log(underscores);
                 $("#word-guess").text(underscores);
+
                 // return underscores;
-                return (randomWordSelect);
+                return (randomWordSelect, underscores);
             }
 
             // This function retrieves the letter selections from the user, via a click event on the oncreen keyboard
-            function userGuess(randomWordSelect) {
+            function userGuess(underscores, randomWordSelect) {
                 $(".letter-button").on("click", function () {
                     // console.log($(this).attr("data-letter"));
-                    console.log ("Word within userGuess Function", randomWordSelect);
+                    // console.log ("Word within userGuess Function", randomWordSelect);
+                    // console.log ("'_' word within userGuess Function", underscores);
+                    var wordGuess = underscores;
                     var letterGuess = $(this).attr("data-letter");
                     console.log(letterGuess);
-                    var wordGuess = "";
+
                     for (i = 0; i < randomWordSelect.length - 1; i++) {
                         if (randomWordSelect[i] === letterGuess) {
-                            underscores[i] = letterGuess;
-                            $("#word-guess").text(underscores);
+                            wordGuess[i] = letterGuess;
+                            //$("#word-guess").text(underscores);
+                            console.log (wordGuess);
                         }}
 
-                    // console.log(wordGuess);
+                    //console.log(wordGuess);
                     
                 });
             }
 
             displayLetterButton();
             wordSelect();
-            userGuess();
+            userGuess(underscores, randomWordSelect);
 
         })
 
