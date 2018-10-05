@@ -61,12 +61,12 @@
         // Define Global Variables
         var randomWordSelect="";
         var underscores="";
-        
-        $(document).ready(function () {
-            // Here we are provided an initial array of letters.
-            // var randomWordSelect = wordSelect(randomWordSelect);
+        var numOfGuesses = 0;
 
-            // This function create buttons on the screen for the user top click
+        // Run the following once the document 'Browser Window' is ready
+        $(document).ready(function () {
+
+            // This function creates buttons on the screen for the user to pick from
             function displayLetterButton() {
                 var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
                 for (var i = 0; i < letters.length; i++) {
@@ -91,9 +91,11 @@
                     }
 
                 console.log(underscores);
+
+                // Prints the word as underscores to the screen
                 $("#word-guess").text(underscores);
 
-                // return underscores;
+                // return underscores and randomWordSelect to be used by other functions;
                 return (randomWordSelect, underscores);
             }
 
@@ -105,20 +107,29 @@
                     // console.log ("'_' word within userGuess Function", underscores);
                     var wordGuess = underscores;
                     var letterGuess = $(this).attr("data-letter");
+                    numOfGuesses ++;
+                    console.log("You have now had", numOfGuesses, "guess/es?");       
                     console.log(letterGuess);
 
+                    //This loops through the word to check if the guessed letter exists and if so updates the display to show the letter in the word, rather than underscore
                     for (i = 0; i < randomWordSelect.length - 1; i++) {
                         if (randomWordSelect[i] === letterGuess) {
-                            wordGuess[i] = letterGuess;
-                            //$("#word-guess").text(underscores);
-                            console.log (wordGuess);
+                            console.log("randomWordSelect[i]: ",randomWordSelect[i]," :letterGuess: ",letterGuess)
+                            wordGuess = wordGuess.replace(wordGuess[i], letterGuess);
+                            console.log (wordGuess);  
+                            $("#word-guess").text(wordGuess);
                         }}
 
-                    //console.log(wordGuess);
+                    if (wordGuess === underscores) {
+                        console.log("I'm sorry that letter is not in the hidden word!");
+                    }
+                    else {
+                        console.log("Congratulations the mystery word contains the letter: ", letterGuess);
+                    }         
                     
                 });
             }
-
+            
             displayLetterButton();
             wordSelect();
             userGuess(underscores, randomWordSelect);
