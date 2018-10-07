@@ -31,33 +31,33 @@
     <!-- Create screen layout for the game -->
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 gameTitle">Simon's Word Guessing Game</div>
+            <div class="col-sm-12 col-md-12 col-lg-12 gameTitle">Simon's Word Guessing Game</div>
         </div>
         <div class="row row2">
-            <div class="col-lg-2 instructionsHeader">INSTRUCTIONS: </div>
-            <div class="col-lg-4 instructions">You have 10 lives to guess the mystery word. Click on the letter buttons
+            <div class="col-sm-2 col-md-2 col-lg-2 instructionsHeader">INSTRUCTIONS: </div>
+            <div class="col-sm-4 col-md-4 col-lg-4 instructions">You have 10 lives to guess the mystery word. Click on the letter buttons
                 below to guess the word!!!</div>
-            <div class="col-lg-1"></div>
-            <div class="col-lg-2 categoryHeader">CATEGORY: </div>
-            <div class="col-lg-2 category"> World Cities</div>
+            <div class="col-sm-1 col-md-1 col-lg-1"></div>
+            <div class="col-sm-2 col-md-2 col-lg-2 categoryHeader">CATEGORY: </div>
+            <div class="col-sm-2 col-md-2 col-lg-2 category"> World Cities</div>
         </div>
         <div class="row row3">
-            <div class="col-lg-12 buttons"></div>
+            <div class="col-sm-12 col-md-12 col-lg-12 buttons"></div>
         </div>
         <div class="row row4">
-            <div class="col-lg-2 guessMe">Here is your Word: </div>
-            <div class="col-lg-4 word-guess"></div>
-            <div class="col-lg-4 livesRemaining">Number of Lives Remaining: </div>
-            <div class="col-lg-2 livesleft"></div>
+            <div class="col-sm-2 col-md-2 col-lg-2 guessMe">Here is your Word: </div>
+            <div class="col-sm-4 col-md-4 col-lg-4 word-guess"></div>
+            <div class="col-sm-4 col-md-4 col-lg-4 livesRemaining">Number of Lives Remaining: </div>
+            <div class="col-sm-2 col-md-2 col-lg-2 livesleft"></div>
         </div>
         <div class="row row5">
-            <div class="col-lg-12 guessResult"></div>
+            <div class="col-sm-12 col-md-12 col-lg-12 guessResult"></div>
         </div>
         <div class="row row5">
-            <div class="col-lg-4 gamesPlayed">Games Played: </div>
-            <div class="col-lg-2 totalGames"></div>
-            <div class="col-lg-4 gamesWon">Games Won: </div>
-            <div class="col-lg-2 winTotal"></div>
+            <div class="col-sm-4 col-md-4 col-lg-4 gamesPlayed">Games Played: </div>
+            <div class="col-sm-2 col-md-2 col-lg-2 totalGames"></div>
+            <div class="col-sm-4 col-md-4 col-lg-4 gamesWon">Games Won: </div>
+            <div class="col-sm-2 col-md-2 col-lg-2 winTotal"></div>
         </div>
         <!-- <div class="row row5">
             <div class="col-lg-12 newGameButton">
@@ -110,25 +110,26 @@
             // This function retrieves the letter selections from the user, via a click event on the oncreen keyboard
             function userGuess(underscores, randomWordSelect) {
                 $(".letter-button").on("click", function () {
-                    console.log ("rWS: "+randomWordSelect + ": us: "+underscores + ": wg: "+wordGuess);
+                    //console.log ("rWS: "+randomWordSelect + ": us: "+underscores + ": wg: "+wordGuess);
 
                     // Check to make sure that the user still has lives remaining
                     if (lives > 0) {
                         //convert the hidden word to lowercase to compare with guessed letter
                         randomWordSelect = randomWordSelect.toLowerCase();
-                        console.log ("Lowercase word: " +randomWordSelect);
+                        //console.log ("Lowercase word: " +randomWordSelect);
                         wordGuess = underscores;
                         //convert letter button clicked to lowercase 
                         var letterGuess = $(this).attr("data-letter").toLowerCase();
                         //Change the color of the button text once it has been chosen
-                        document.getElementById(this.style.backgroundColor = "red");
+                        document.getElementById(this.style.backgroundColor = "#eca1a6");
                         // console.log("You have now had", lives, "guess/es?");
-                        console.log(letterGuess);
+                        //console.log(letterGuess);
                         //This loops through the word to check if the guessed letter exists and if so updates the display to show the letter in the word, rather than underscore
                         for (i = 0; i < randomWordSelect.length; i++) {
                             if (randomWordSelect[i] === letterGuess) {
                                 wordGuess[i] = letterGuess;
                                 congrats = true;
+                                document.getElementById(this.style.backgroundColor = "lightgreen");
                                 $(".word-guess").text(wordGuess.join(" ").toLowerCase());
                             }
                         }
@@ -162,7 +163,8 @@
                         }
                         //if you run out of lives before you guess the word it gives a message and updates the game total
                         else if (lives === 0) {
-                            $(".guessResult").text("GAME OVER !!!  You've exhausted your 10 guesses and you haven't solved the hidden word");
+                            var failMessage = ("GAME OVER !!!  You've exhausted your 10 guesses and you haven't solved found the city: "+ randomWordSelect.toUpperCase());
+                            $(".guessResult").text(failMessage);
                             totalGames++
                             $(".totalGames").text(totalGames);
                             newGame();
