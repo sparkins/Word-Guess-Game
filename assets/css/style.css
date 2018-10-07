@@ -76,9 +76,35 @@ body {
     font-size: 24px;
     color: red;
     padding-top: 10px;
-
 }
 
 .guessResult {
     margin-top: 2%;
+}
+
+.gamesPlayed {
+    margin-top: 5%;
+    font-weight: bold;
+    padding-top: 10px;
+    margin-left: 0%;
+}
+
+.totalGames {
+    margin-top: 5%;
+    font-size: 20px;
+    color: darkblue;
+    padding-top: 10px;
+}
+
+.gamesWon{
+    margin-top: 5%;
+    font-weight: bold;
+    padding-top: 10px;
+}
+
+.winTotal {
+    margin-top: 5%;
+    font-size: 20px;
+    color: darkgreen;
+    padding-top: 10px;
 }

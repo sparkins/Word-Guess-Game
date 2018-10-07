@@ -28,15 +28,6 @@
 
 <body>
 
-
-    <!-- <div id="display"></div> -->
-    <div id="buttons"></div>
-    <!-- <div id="word-guess"></div> -->
-    <!-- <div class="buttonContainer"></div> -->
-    <div id="livesleft"></div>
-    <div id="guessResult"></div>
-
-
     <!-- Create screen layout for the game -->
     <div class="container">
         <div class="row">
@@ -57,10 +48,14 @@
         <div class="row row4">
             <div class="col-lg-2 guessMe">Here is your Word: </div>
             <div class="col-lg-4 word-guess"></div>
-            <div class="col-lg-1"></div>
-            <div class="col-lg-3 livesRemaining">Number of Lives Remaining: </div>
+            <div class="col-lg-4 livesRemaining">Number of Lives Remaining: </div>
             <div class="col-lg-2 livesleft"></div>
-
+        </div>
+        <div class="row row5">
+            <div class="col-lg-4 gamesPlayed">Games Played: </div>
+            <div class="col-lg-2 totalGames"></div>
+            <div class="col-lg-4 gamesWon">Games Won: </div>
+            <div class="col-lg-2 winTotal"></div>
         </div>
     </div>
 
@@ -71,8 +66,11 @@
         var randomWordSelect = "";
         var underscores = [];
         var lives = 10;
+        var winTotal = 0;
+        var totalGames = 0;
         $(".livesleft").text(lives);
-
+        $(".totalGames").text(totalGames);
+        $(".winTotal").text(winTotal);
 
         // Run the following once the document 'Browser Window' is ready
         $(document).ready(function () {
