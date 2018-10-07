@@ -13,6 +13,7 @@ body {
     border-bottom-color: gray;
     border-bottom-width: 1.5px;
     border-bottom-style: solid;
+    background-color: #fef9e5;
 }
 
 .container {
@@ -51,6 +52,9 @@ body {
     margin-left: 15%;
     vertical-align: middle;
     margin-bottom: 5%;
+}
+.letter-button-color {
+    background-color: #fef9e5;
 }
 
 .guessMe {
@@ -124,5 +128,4 @@ body {
 
 .newGameButton {
     margin-top: 20px;
-    margin-bottom: 2px;
 }

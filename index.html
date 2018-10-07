@@ -98,28 +98,32 @@
                 randomWordSelect = wordList[Math.floor(Math.random() * wordList.length)];
                 console.log(randomWordSelect);
                 // Display the answer as "-"
+                    underscores = [];
                 for (i = 0; i < randomWordSelect.length; i++) {
                     underscores.push("_");
                 }
                 // Prints the word as underscores to the screen
                 $(".word-guess").text(underscores.join(" "));
                 console.log(underscores);
+                userGuess (underscores, randomWordSelect);
             }
             // This function retrieves the letter selections from the user, via a click event on the oncreen keyboard
             function userGuess(underscores, randomWordSelect) {
                 $(".letter-button").on("click", function () {
+                    console.log ("rWS: "+randomWordSelect + ": us: "+underscores + ": wg: "+wordGuess);
+
                     // Check to make sure that the user still has lives remaining
                     if (lives > 0) {
                         //convert the hidden word to lowercase to compare with guessed letter
                         randomWordSelect = randomWordSelect.toLowerCase();
-                        //console.log ("Lowercase word: " +randomWordSelect);
+                        console.log ("Lowercase word: " +randomWordSelect);
                         wordGuess = underscores;
                         //convert letter button clicked to lowercase 
                         var letterGuess = $(this).attr("data-letter").toLowerCase();
                         //Change the color of the button text once it has been chosen
                         document.getElementById(this.style.backgroundColor = "red");
                         // console.log("You have now had", lives, "guess/es?");
-                        // console.log(letterGuess);
+                        console.log(letterGuess);
                         //This loops through the word to check if the guessed letter exists and if so updates the display to show the letter in the word, rather than underscore
                         for (i = 0; i < randomWordSelect.length; i++) {
                             if (randomWordSelect[i] === letterGuess) {
@@ -148,7 +152,8 @@
                         console.log("wordGuess: " + wordGuess + " " + "randomWordSelect: " + randomWordSelect);
                         if (wordGuess.join("") === randomWordSelect) {
                             console.log("wordGuess: " + wordGuess.join("") + " " + "randomWordSelect: " + randomWordSelect);
-                            $(".guessResult").text("CONGRATULATIONS:  You have solve the word and won the game");
+                            var congratsMessage = ("CONGRATULATIONS:  You Have Found The City *** " +randomWordSelect.toUpperCase()+ " *** And WON The Game !!!");
+                            $(".guessResult").text(congratsMessage);
                             winTotal++;
                             totalGames++
                             $(".totalGames").text(totalGames);
@@ -169,9 +174,14 @@
                         lives=10;
                         wordGuess = [];
                         // $(".word-guess").remove();
+                        //document.getElementById("letter-button".style.backgroundColor = "gray");
+                        $(".letter-button-color").css({backgroundColor: "#fef9e5"});
+                        
+
                         randomWordSelect = "";
-                        underscores = [];
+                        underscores= [];
                         congrats = false;
+
                         wordSelect();
                         // $(".letter-button").hasClass(style.backgroundColor="gray");
                         // })
@@ -180,9 +190,10 @@
                 })
 
             }
+
             displayLetterButton();
             wordSelect();
-            userGuess(underscores, randomWordSelect);
+            //userGuess(underscores, randomWordSelect);
         })
     </script>
 
