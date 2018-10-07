@@ -121,3 +121,8 @@ body {
     text-align: center;
     padding-top: 20px;
 }
+
+.newGameButton {
+    margin-top: 20px;
+    margin-bottom: 2px;
+}
