@@ -87,6 +87,7 @@ body {
     font-weight: bold;
     padding-top: 10px;
     margin-left: 0%;
+    bottom: 1%;
 }
 
 .totalGames {
@@ -94,12 +95,14 @@ body {
     font-size: 20px;
     color: darkblue;
     padding-top: 10px;
+    bottom: 1%;
 }
 
 .gamesWon{
     margin-top: 5%;
     font-weight: bold;
     padding-top: 10px;
+    bottom: 1%;
 }
 
 .winTotal {
@@ -107,4 +110,13 @@ body {
     font-size: 20px;
     color: darkgreen;
     padding-top: 10px;
+    bottom: 1%;
+}
+
+.guessResult {
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+    padding-top: 20px;
 }

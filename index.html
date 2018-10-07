@@ -52,6 +52,9 @@
             <div class="col-lg-2 livesleft"></div>
         </div>
         <div class="row row5">
+            <div class="col-lg-12 guessResult"></div>
+        </div>
+        <div class="row row5">
             <div class="col-lg-4 gamesPlayed">Games Played: </div>
             <div class="col-lg-2 totalGames"></div>
             <div class="col-lg-4 gamesWon">Games Won: </div>
@@ -68,6 +71,7 @@
         var lives = 10;
         var winTotal = 0;
         var totalGames = 0;
+        var congrats = false;
         $(".livesleft").text(lives);
         $(".totalGames").text(totalGames);
         $(".winTotal").text(winTotal);
@@ -107,7 +111,6 @@
             function userGuess(underscores, randomWordSelect) {
                 $(".letter-button").on("click", function () {
                     if (lives > 0) {
-
                         // console.log($(this).attr("data-letter"));
                         // console.log("Word within userGuess Function", randomWordSelect);
                         // console.log("'_' word within userGuess Function", underscores);
@@ -115,7 +118,7 @@
                         console.log ("Lowercase word: " +randomWordSelect);
                         var wordGuess = underscores;
                         var letterGuess = $(this).attr("data-letter").toLowerCase();
-                        
+                        document.getElementById(this.style.backgroundColor="red");
                         //Change the color of the button text once it has been chosen
                         // $(this).attr("data-letter", font-color="red");
                         console.log("You have now had", lives, "guess/es?");
@@ -130,28 +133,39 @@
                                 console.log("word" ,wordGuess);
                                 // console.log (typeof wordGuess);
                                 wordGuess[i] = letterGuess;
-                                var congrats = true;
+                                congrats = true;
                                 console.log(wordGuess);
                                 $(".word-guess").text(wordGuess.join(" ").toLowerCase());
                             }
                         }
 
                         if (congrats === true) {
-                           
-                            $("#guessResult").text("Congratulations the mystery word contains the letter: " + letterGuess.toUpperCase());
+                            $(".guessResult").text("Congratulations the mystery word contains the letter: " + letterGuess.toUpperCase());
                             console.log("Congratulations the mystery word contains the letter: ", letterGuess.toUpperCase());
+                            congrats=false;
                         }
                         else {
-                            $("#guessResult").text("I'm sorry that letter is not in the hidden word!");
+                            $(".guessResult").text("I'm sorry that letter is not in the hidden word!");
                             console.log("I'm sorry that letter is not in the hidden word!");
                             lives--;
                             $(".livesleft").text(lives);
+                        }
 
+                        console.log("wordGuess: "+wordGuess+" "+"randomWordSelect: "+randomWordSelect);
+                        if (wordGuess === randomWordSelect) {
+                            console.log("wordGuess: "+wordGuess+" "+"randomWordSelect: "+randomWordSelect);
+                            $(".guessResult").text("CONGRATULATIONS:  You have solve the word and won the game");
+                            winTotal++;
+                            totalGames++
+                        }
+                        else if (wordGuess != randomWordSelect && lives===0) {
+                            $(".guessResult").text("GAME OVER !!!  You've exhausted your 10 guesses and you haven't solved the hidden word");
+                            totalGames++
                         }
 
                     };
             })
-            $("<gameOver>").text("GAME OVER !!!  You've exhausted your 10 guesses and you haven't solved the hidden word");
+            
         }
 
         displayLetterButton();
