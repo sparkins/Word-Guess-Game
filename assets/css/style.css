@@ -7,9 +7,10 @@ body {
 .gameTitle {
     text-align: center;
     font-weight: bold;
-    font-size: 32px;
+    font-size: 56px;
     line-height: 100px;
-    color: blue;
+    color: black;
+    background-repeat: no-repeat;
     border-bottom-color: gray;
     border-bottom-width: 1.5px;
     border-bottom-style: solid;
