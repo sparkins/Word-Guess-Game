@@ -7,22 +7,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Word Guess Game</title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
-    <!-- 
-    <style>
-        body {
-            background: url(assets/images/hangman.jpg) no-repeat;
-        }
-    </style> -->
+
+    <script src="assets/javascript/game.js"></script>
 
 </head>
 
@@ -31,7 +30,8 @@
     <!-- Create screen layout for the game -->
     <div class="container">
         <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-12 gameTitle" style="background: url(assets/images/worldcities.jpg)">Word
+            <div class="col-sm-12 col-md-12 col-lg-12 gameTitle" style="background: url(assets/images/worldcities.jpg)">
+                Word
                 Guessing Game</div>
         </div>
         <div class="row row2">
@@ -44,7 +44,7 @@
             <div class="col-sm-2 col-md-2 col-lg-2 category"> World Cities</div>
         </div>
         <div class="row row3">
-            <div class="col-sm-12 col-md-12 col-lg-12 buttons"></div>
+            <div style="text-align: center;" class="col-sm-12 col-md-12 col-lg-12 buttons"></div>
         </div>
         <div class="row row4">
             <div class="col-sm-2 col-md-2 col-lg-2 guessMe">Here is your Word: </div>
@@ -61,147 +61,11 @@
             <div class="col-sm-4 col-md-4 col-lg-4 gamesWon">Games Won: </div>
             <div class="col-sm-2 col-md-2 col-lg-2 winTotal"></div>
         </div>
-        <!-- <div class="row row5">
-            <div class="col-lg-12 newGameButton">
-                <button type="button" class="btn btn-primary">New Game</button>
-            </div>
-        </div> -->
     </div>
 
-    <script>
-        // Define Global Variables
-        var randomWordSelect = "";
-        var underscores = [];
-        var lives = 10;
-        var winTotal = 0;
-        var totalGames = 0;
-        var congrats = false;
-        var wordGuess = [];
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-        $(".livesleft").text(lives);
-        $(".totalGames").text(totalGames);
-        $(".winTotal").text(winTotal);
-        // Run the following once the document 'Browser Window' is ready
-        $(document).ready(function () {
-            // This function creates buttons on the screen for the user to pick from
-            function displayLetterButton() {
-                var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-                for (var i = 0; i < letters.length; i++) {
-                    var letterBtn = $("<button>");
-                    letterBtn.addClass("letter-button letter letter-button-color")
-                    letterBtn.attr("data-letter", letters[i]);
-                    letterBtn.text(letters[i]);
-                    $(".buttons").append(letterBtn);
-                }
-            }
-            // This function takes an array of words, randomly selects one and then prints out dashes for each letter in that word
-            function wordSelect() {
-                var wordList = ["London", "Paris", "Munich", "Washington", "Singapore", "Rome", "Madrid", "Porto", "Istanbul", "Sydney", "Dubai", "Tokyo", "Seoul", "Bangkok", "Barcelona", "Amsterdam", "Shanghai", "Prague"];
-                randomWordSelect = wordList[Math.floor(Math.random() * wordList.length)];
-                console.log(randomWordSelect);
-                // Display the answer as "-"
-                underscores = [];
-                for (i = 0; i < randomWordSelect.length; i++) {
-                    underscores.push("_");
-                }
-                // Prints the word as underscores to the screen
-                $(".word-guess").text(underscores.join(" "));
-                console.log(underscores);
-                userGuess(underscores, randomWordSelect);
-            }
-            // This function retrieves the letter selections from the user, via a click event on the oncreen keyboard
-            function userGuess(underscores, randomWordSelect) {
-                $(".letter-button").on("click", function () {
-                    //console.log ("rWS: "+randomWordSelect + ": us: "+underscores + ": wg: "+wordGuess);
-
-                    // Check to make sure that the user still has lives remaining
-                    if (lives > 0) {
-                        //convert the hidden word to lowercase to compare with guessed letter
-                        randomWordSelect = randomWordSelect.toLowerCase();
-                        //console.log ("Lowercase word: " +randomWordSelect);
-                        wordGuess = underscores;
-                        //convert letter button clicked to lowercase 
-                        var letterGuess = $(this).attr("data-letter").toLowerCase();
-                        //Change the color of the button text once it has been chosen
-                        document.getElementById(this.style.backgroundColor = "#eca1a6");
-                        // console.log("You have now had", lives, "guess/es?");
-                        //console.log(letterGuess);
-                        //This loops through the word to check if the guessed letter exists and if so updates the display to show the letter in the word, rather than underscore
-                        for (i = 0; i < randomWordSelect.length; i++) {
-                            if (randomWordSelect[i] === letterGuess) {
-                                wordGuess[i] = letterGuess;
-                                congrats = true;
-                                document.getElementById(this.style.backgroundColor = "lightgreen");
-                                $(".word-guess").text(wordGuess.join(" ").toLowerCase());
-                            }
-                        }
-
-                        //prints a congratulations message if you made a correct guess
-                        if (congrats === true) {
-                            $(".guessResult").text("Congratulations the mystery word contains the letter: " + letterGuess.toUpperCase());
-                            console.log("Congratulations the mystery word contains the letter: ", letterGuess.toUpperCase());
-                            congrats = false;
-                        }
-                        //prints a I'm sorry message if the letter is not present
-                        else {
-                            $(".guessResult").text("I'm sorry that letter is not in the hidden word!");
-                            console.log("I'm sorry that letter is not in the hidden word!");
-                            console.log("before lives--" + lives);
-                            lives--;
-                            console.log("after lives--" + lives);
-                            $(".livesleft").text(lives);
-                        }
-
-                        // when the game is complete it messages a congrats and updates the game and win totals
-                        //wordGuess = wordGuess.join("")
-                        console.log("wordGuess: " + wordGuess + " " + "randomWordSelect: " + randomWordSelect);
-                        if (wordGuess.join("") === randomWordSelect) {
-                            console.log("wordGuess: " + wordGuess.join("") + " " + "randomWordSelect: " + randomWordSelect);
-                            var congratsMessage = ("CONGRATULATIONS:  You Have Found The City *** " + randomWordSelect.toUpperCase() + " *** And WON The Game !!!");
-                            $(".guessResult").text(congratsMessage);
-                            winTotal++;
-                            totalGames++
-                            $(".totalGames").text(totalGames);
-                            $(".winTotal").text(winTotal);
-                            newGame();
-                        }
-                        //if you run out of lives before you guess the word it gives a message and updates the game total
-                        else if (lives === 0) {
-                            var failMessage = ("GAME OVER !!!  You've exhausted your 10 guesses and you haven't solved found the city: " + randomWordSelect.toUpperCase());
-                            $(".guessResult").text(failMessage);
-                            totalGames++
-                            $(".totalGames").text(totalGames);
-                            newGame();
-                        }
-                    }
-                })
-            }
-
-            //Function to clear lives and provide a new word to guess
-            function newGame(underscores) {
-                // $(".btn").on("click", function () {
-                console.log("New Game initiated");
-                lives = 10;
-                wordGuess = [];
-                // $(".word-guess").remove();
-                //document.getElementById("letter-button".style.backgroundColor = "gray");
-                $(".letter-button-color").css({ backgroundColor: "#fef9e5" });
-
-                randomWordSelect = "";
-                underscores = [];
-                congrats = false;
-
-                wordSelect();
-                // $(".letter-button").hasClass(style.backgroundColor="gray");
-                // })
-            }
-
-            displayLetterButton();
-            newGame();
-            //wordSelect();
-            //userGuess(underscores, randomWordSelect);
-        })
-    </script>
+    <!-- Adds a link to the JavaScript file.         -->
 
 </body>
 

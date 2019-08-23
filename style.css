@@ -1,0 +1,133 @@
+/* 
+body {
+        background: url(assets/hangman.jpg) no-repeat;
+        padding-left: 10%;
+    } */
+
+.gameTitle {
+    text-align: center;
+    font-weight: bold;
+    font-size: 56px;
+    line-height: 100px;
+    color: black;
+    background-repeat: no-repeat;
+    border-bottom-color: gray;
+    border-bottom-width: 1.5px;
+    border-bottom-style: solid;
+    background-color: #fef9e5;
+}
+
+.container {
+    border-color: gray;
+    border-width: 1.5px;
+    border-style: solid;
+    width: 100%;
+    padding-bottom: 5%;
+    margin-top: 5px;
+}   
+
+.instructionsHeader {
+    margin-top: 2%;
+    font-weight: bold;
+}
+
+.instructions {
+    margin-top: 2%;
+    margin-left: 1%;
+    padding-left: 20px;
+
+}
+.categoryHeader {
+    margin-top: 2%;
+    font-weight: bold;
+}
+
+.category {
+    margin-top: 2%;
+    font-weight: bold;
+    color: blue;
+    font-size: 24px;
+}
+
+.buttons {
+    margin-top: 5%;
+    margin-left: 0;
+    vertical-align: middle;
+    margin-bottom: 5%;
+}
+.letter-button-color {
+    background-color: #fef9e5;
+}
+
+.guessMe {
+    margin-top: 2%;
+    font-weight: bold;
+    padding-top: 10px;
+}
+
+.word-guess {
+    margin-top: 1%;
+    font-size: 32px;
+    color: darkgreen;
+}
+
+.livesRemaining {
+    margin-top: 2%;
+    font-weight: bold;
+    padding-top: 10px;
+
+}
+.livesleft {
+    margin-top: 1.5%;
+    font-weight: bold;
+    font-size: 24px;
+    color: red;
+    padding-top: 10px;
+}
+
+.guessResult {
+    margin-top: 2%;
+}
+
+.gamesPlayed {
+    margin-top: 5%;
+    font-weight: bold;
+    padding-top: 10px;
+    margin-left: 0%;
+    bottom: 1%;
+}
+
+.totalGames {
+    margin-top: 5%;
+    font-size: 20px;
+    color: darkblue;
+    padding-top: 10px;
+    bottom: 1%;
+}
+
+.gamesWon{
+    margin-top: 5%;
+    font-weight: bold;
+    padding-top: 10px;
+    bottom: 1%;
+}
+
+.winTotal {
+    margin-top: 5%;
+    font-size: 20px;
+    color: darkgreen;
+    padding-top: 10px;
+    bottom: 1%;
+}
+
+.guessResult {
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.newGameButton {
+    margin-top: 20px;
+}
